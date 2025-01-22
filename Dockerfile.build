@@ -1,0 +1,30 @@
+FROM node:20-bullseye
+
+WORKDIR /app
+
+ARG SAS_TOKEN
+
+ENV SAS_TOKEN=${SAS_TOKEN}
+
+RUN apt-get update && apt-get install -y \
+    libgtk2.0-0 \
+    libgtk-3-0 \
+    libgbm-dev \
+    libnotify-dev \
+    libnss3 \
+    libxss1 \
+    libasound2 \
+    libxtst6 \
+    xauth \
+    xvfb \
+    curl \
+    --no-install-recommends && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY package.json package-lock.json upload_to_blob.sh ./
+
+RUN npm install
+
+COPY . .
+
+CMD ["bash", "-c", "npm run testTest; bash upload_to_blob.sh"]

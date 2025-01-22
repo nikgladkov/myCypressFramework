@@ -1,0 +1,41 @@
+{
+  "name": "cypress-framework-project",
+  "version": "0.1",
+  "description": "yet another framework",
+  "main": "index.js",
+  "scripts": {
+    "all-smokes": "cypress run --headless --env TAGS=\"@Smoke and not @Draft\""
+  },
+  "author": "Nik Gladkov",
+  "license": "ISC",
+  "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "latest",
+    "@bahmutov/cypress-esbuild-preprocessor": "latest",
+    "cypress": "latest",
+    "cypress-on-fix": "latest",
+    "typescript": "latest"
+  },
+  "cypress-cucumber-preprocessor": {
+    "stepDefinitions": [
+      "cypress/support/Step_definitions/**/*"
+    ],
+    "html": {
+      "enabled": true,
+      "output": "cypress/reports/cucumber-preprocessor/report.html"
+    },
+    "messages": {
+      "enabled": true,
+      "output": "cypress/reports/cucumber-preprocessor/report.ndjs"
+    },
+    "json": {
+      "enabled": true,
+      "formatter": "cucumber-json-report-formatter",
+      "output": "cypress/reports/cucumber-preprocessor/report.json"
+    },
+    "filterSpecs": true,
+    "omitFiltered": true
+  },
+  "dependencies": {
+    "git-filter-repo": "^0.0.30"
+  }
+}
