@@ -4,7 +4,7 @@ I am working as QA and, currently, I am in the process of developing autotests f
 
 I gained knowledge from the Udemy course [Cypress with Cucumber BDD - Automation Testing Bootcamp](https://www.udemy.com/course/cypress-with-cucumber-bdd-beginner-to-expert-in-9-hours/?couponCode=KEEPLEARNING) and I want to share my approach to setting up a Cypress project. There are some details I found missing in other guides, and I want to cover them. 
 
-The Cypress framework git repository - [link](https://github.com/nikgladkov/myCypresFramework).
+The Cypress framework git repository - [link](https://github.com/nikgladkov/myCypressFramework).
 
 I would be glad to get your feedback to improve my project! You can [reach me on LinkedIn](https://www.linkedin.com/in/nik-gladkov-qa/?locale=en_US).
 
@@ -20,9 +20,9 @@ Tests Preparing → Tests Implementation → Test Execution → Reporting
 
 I prepare tests as sets of manual tests in a separate Qase repository. The test cases marked as "To be automated" are later implemented in Cypress using my framework.
 
-In this repository, [Demo_Test.feature](https://github.com/nikgladkov/myCypresFramework/blob/main/cypress/e2e/Demo_Test.feature) is shown as a demo considering my approach to arrangement of the real project.
+In this repository, [Demo_Test.feature](https://github.com/nikgladkov/myCypressFramework/blob/main/cypress/e2e/Demo_Test.feature) is shown as a demo considering my approach to arrangement of the real project.
 
-The test simply goes to the base Url set in the e2e section of the [cypress.config.js](https://github.com/nikgladkov/myCypresFramework/blob/main/cypress.config.js). After it fills the Contact form, submit and check the resulting page.
+The test simply goes to the base Url set in the e2e section of the [cypress.config.js](https://github.com/nikgladkov/myCypressFramework/blob/main/cypress.config.js). After it fills the Contact form, submit and check the resulting page.
 
 Feature file has a link to related test in the Qase and related tags - tags are used for running tests with [scripts](#scripting).
 
@@ -34,7 +34,7 @@ For details please see the package docs - https://github.com/badeball/cypress-cu
 
 So far, I use following packages for the project:
 
-_[package.json](https://github.com/nikgladkov/myCypresFramework/blob/main/package.json)_
+_[package.json](https://github.com/nikgladkov/myCypressFramework/blob/main/package.json)_
 ```
 "devDependencies": {
   "@badeball/cypress-cucumber-preprocessor": "latest",
@@ -49,7 +49,7 @@ _[package.json](https://github.com/nikgladkov/myCypresFramework/blob/main/packag
 
 For Step Defenitions, I use the following structure to separate the code:
 
-_[support/Step_Defenitions](https://github.com/nikgladkov/myCypresFramework/tree/main/cypress/support/Step_definitions)_
+_[support/Step_Defenitions](https://github.com/nikgladkov/myCypressFramework/tree/main/cypress/support/Step_definitions)_
 ```
 - Step_definitions
 -- Pre_conditions_steps.ts - contains the code for tests described in the Background section of the e2e feature tests
@@ -61,7 +61,7 @@ _[support/Step_Defenitions](https://github.com/nikgladkov/myCypresFramework/tree
 
 It is important to set the paths for step definitions.
 
-_[package.json](https://github.com/nikgladkov/myCypresFramework/blob/main/package.json)_
+_[package.json](https://github.com/nikgladkov/myCypressFramework/blob/main/package.json)_
 
 ```
    "stepDefinitions": [
@@ -79,9 +79,9 @@ _VS Code → Settings → Settings → Extentions → Cucumber → Edit in setti
 
 # Page Selectors
 
-I describe page elements [within classes](https://github.com/nikgladkov/myCypresFramework/tree/main/cypress/support/Selectors) and create their instances in the step definition code. This ensures that CSS selectors are not duplicated throughout the project but are stored in one place, making them easy to change. Each class represents a page or section.
+I describe page elements [within classes](https://github.com/nikgladkov/myCypressFramework/tree/main/cypress/support/Selectors) and create their instances in the step definition code. This ensures that CSS selectors are not duplicated throughout the project but are stored in one place, making them easy to change. Each class represents a page or section.
 
-_[support/Step_definitions/ContactUs.ts](https://github.com/nikgladkov/myCypresFramework/blob/main/cypress/support/Selectors/ContactUs.ts)_
+_[support/Step_definitions/ContactUs.ts](https://github.com/nikgladkov/myCypressFramework/blob/main/cypress/support/Selectors/ContactUs.ts)_
 ```
 export class ContactUsPage {
   pageTitle = "WebDriver | Contact Us";
@@ -91,7 +91,7 @@ export class ContactUsPage {
 
 In the step definition, I import the required selector class, create an instance, and call its properties to access the values.
 
-_[support/Step_definitions/e2e/Demo_Test.ts](https://github.com/nikgladkov/myCypresFramework/blob/main/cypress/support/Step_definitions/e2e/Demo_Test.ts)_
+_[support/Step_definitions/e2e/Demo_Test.ts](https://github.com/nikgladkov/myCypressFramework/blob/main/cypress/support/Step_definitions/e2e/Demo_Test.ts)_
 ```
 import * as ContactUs from "../../Selectors/ContactUs";
 const contactUsPage = new ContactUs.ContactUsPage();
@@ -105,9 +105,9 @@ For detecting markup selectors during tests implemintation I use [Ranorex Seloci
 
 # Test Data
 
-Similar to how I handle page selectors, I describe test inputs and other useful data [within classes](https://github.com/nikgladkov/myCypresFramework/blob/main/cypress/support/Test_Data/Test_Data.ts), and import needed classes to the step defenition code.
+Similar to how I handle page selectors, I describe test inputs and other useful data [within classes](https://github.com/nikgladkov/myCypressFramework/blob/main/cypress/support/Test_Data/Test_Data.ts), and import needed classes to the step defenition code.
 
-_[support/Test_Data/Test_Data.ts](https://github.com/nikgladkov/myCypresFramework/blob/main/cypress/support/Test_Data/Test_Data.ts)_
+_[support/Test_Data/Test_Data.ts](https://github.com/nikgladkov/myCypressFramework/blob/main/cypress/support/Test_Data/Test_Data.ts)_
 ```
 export class DefaultUser {
   firstName = "Michael";
@@ -116,7 +116,7 @@ export class DefaultUser {
 }
 ```
 
-_[support/Step_definitions/e2e/Demo_Test.ts](https://github.com/nikgladkov/myCypresFramework/blob/main/cypress/support/Step_definitions/e2e/Demo_Test.ts)_
+_[support/Step_definitions/e2e/Demo_Test.ts](https://github.com/nikgladkov/myCypressFramework/blob/main/cypress/support/Step_definitions/e2e/Demo_Test.ts)_
 ```
 import * as TestData from "../../Test_Data/Test_Data";
 const defaultUser = new TestData.DefaultUser();
@@ -132,7 +132,7 @@ Then(/^I type a first name$/, () => {
 
 The infrastructure for my work project is set up via Azure and Docker. Release deployment runs the prescribed tests.
 
-[Dockerfile.build](https://github.com/nikgladkov/myCypresFramework/blob/main/Dockerfile.build) file consists of a [script](#scripting) for running tests.
+[Dockerfile.build](https://github.com/nikgladkov/myCypressFramework/blob/main/Dockerfile.build) file consists of a [script](#scripting) for running tests.
 
 ```
 CMD ["bash", "-c", "npm run all-smokes"]
@@ -144,7 +144,7 @@ _I am not an advanced user of Docker, if you were to ask for further details. I 
 
 I add additional scripts to run tests by tags in headless mode.
 
-_[package.json](https://github.com/nikgladkov/myCypresFramework/blob/main/package.json)_
+_[package.json](https://github.com/nikgladkov/myCypressFramework/blob/main/package.json)_
 
 ```
    "scripts": {
@@ -155,7 +155,7 @@ The script running by command ```npm run all-smokes```.
 
 To run tests only with specific tags, I configured the project based on [the solution described on Stack Overflow](https://stackoverflow.com/questions/73076496/cucumber-tags-are-not-working-after-cypress-and-cucumber-preprocessor-upgrade). Otherwise, Cypress will try to invoke unTagged tests and mark them as skipped in the test run results. This can be a problem if you have draft tests in the repository.
 
-_[package.json](https://github.com/nikgladkov/myCypresFramework/blob/main/package.json)_
+_[package.json](https://github.com/nikgladkov/myCypressFramework/blob/main/package.json)_
 
 ```
   "cypress-cucumber-preprocessor": {
@@ -170,9 +170,9 @@ _[package.json](https://github.com/nikgladkov/myCypresFramework/blob/main/packag
 
 The core package [@badeball/cypress-cucumber-preprocessor](https://www.npmjs.com/package/@badeball/cypress-cucumber-preprocessor/v/5.0.0-rc2) generates report files. Please refer to the [documentation](https://github.com/badeball/cypress-cucumber-preprocessor/blob/master/docs/messages-report.md) for more details.
 
-The project settings for reporting are outlined below. Report artifacts are created in the [reports](https://github.com/nikgladkov/myCypresFramework/tree/main/cypress/reports/cucumber-preprocessor) folder ([screenshots](https://github.com/nikgladkov/myCypresFramework/tree/main/cypress/screenshots) folder is generated only for failed tests).
+The project settings for reporting are outlined below. Report artifacts are created in the [reports](https://github.com/nikgladkov/myCypressFramework/tree/main/cypress/reports/cucumber-preprocessor) folder ([screenshots](https://github.com/nikgladkov/myCypressFramework/tree/main/cypress/screenshots) folder is generated only for failed tests).
 
-_[package.json](https://github.com/nikgladkov/myCypresFramework/blob/main/package.json)_
+_[package.json](https://github.com/nikgladkov/myCypressFramework/blob/main/package.json)_
 
 ```
 "cypress-cucumber-preprocessor": {
@@ -195,7 +195,7 @@ _[package.json](https://github.com/nikgladkov/myCypresFramework/blob/main/packag
   }
 ```
 
-_[cypress.config.js](https://github.com/nikgladkov/myCypresFramework/blob/main/cypress.config.js)_
+_[cypress.config.js](https://github.com/nikgladkov/myCypressFramework/blob/main/cypress.config.js)_
 
 ```
 const { defineConfig } = require("cypress");
@@ -234,9 +234,9 @@ async function setupNodeEvents(on, config) {
 
 ## Uploading the report artifacts to cloud storage
 
-_[upload_to_blob.sh](https://github.com/nikgladkov/myCypresFramework/blob/main/upload_to_blob.sh)_ script creates a separate reports folder after tests have run and uploads the created test artifacts to Azure Blob Storage.
+_[upload_to_blob.sh](https://github.com/nikgladkov/myCypressFramework/blob/main/upload_to_blob.sh)_ script creates a separate reports folder after tests have run and uploads the created test artifacts to Azure Blob Storage.
 
-_[Dockerfile.build](https://github.com/nikgladkov/myCypresFramework/blob/main/Dockerfile.build)_
+_[Dockerfile.build](https://github.com/nikgladkov/myCypressFramework/blob/main/Dockerfile.build)_
 
 ```
 CMD ["bash", "-c", "npm run testTest; bash upload_to_blob.sh"]
@@ -247,7 +247,7 @@ CMD ["bash", "-c", "npm run testTest; bash upload_to_blob.sh"]
 ### Additional report plugins
 - cypress-mochawesome-reporter plugin 
 https://www.npmjs.com/package/cypress-mochawesome-reporter
-file:///Users/nik/MyCypressFramework/myCypresFramework/cypress/reports/index.html
+file:///Users/nik/MyCypressFramework/myCypressFramework/cypress/reports/index.html
 
 - cypress-multi-reporters
 https://www.npmjs.com/package/cypress-multi-reporters
